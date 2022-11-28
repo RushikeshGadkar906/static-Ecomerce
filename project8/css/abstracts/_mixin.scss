@@ -1,0 +1,89 @@
+@mixin heading ($font-size:42px, $font-weight:800) {
+    font-family: $main_heading_font;
+    font-size: $font-size;
+    font-weight: $font-weight;
+}
+
+@mixin section($border-radius:0px) {
+    padding: 70px 70px;
+    border-radius: $border-radius;
+}
+
+@mixin selectBox($width:100%, $height:45px, $x-position:96%) {
+    width: $width;
+    padding: 6px 12px;
+    height: $height;
+    font-size: 16px;
+    line-height: 1;
+    border-radius: 5px;
+    border: 1px solid #e7e7e7;
+    cursor: pointer;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
+    -webkit-appearance: none;
+    color: #7c7c7c;
+    background-position-x: $x-position;
+}
+
+@mixin button($bg-color:$btn-color, $border-radius:0px, $color:#fff, $font-weight:400) {
+    text-align: center;
+    color: $color;
+    background-color: $bg-color;
+    padding: 18px 35px;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 11;
+    font-weight: $font-weight;
+    line-height: 1;
+    border-radius: $border-radius;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+}
+
+// ***************************
+//     Responsive CSS        //
+// ***************************
+//Extra Small devices
+@mixin xs {
+    @media (max-width: #{$screen-xs-min}) {
+        @content;
+    }
+}
+
+// Small devices
+@mixin sm {
+    @media (max-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin md {
+    @media (max-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+// Large devices
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+// Extra large devices
+@mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+// Custom devices
+@mixin rwd($screen) {
+    @media (min-width: $screen+'px') {
+        @content;
+    }
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.2.0/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+    <style>
+        .sliders {
+            padding: 15px 0 30px 0;
+        }
+        
+        .filter-section .filter-label {
+            display: block;
+            font-weight: bold;
+        }
+        
+        .bootstrap-slider .slider-selection {
+            background: #2175b0;
+        }
+        
+        .tooltip-max.top,
+        .tooltip-min.top {
+            opacity: 1;
+        }
+        
+        .bootstrap-slider b {
+            padding: 0 15px;
+        }
+        
+        .custom-btn {
+            width: 130px;
+            height: 40px;
+            color: #FFF;
+            border-radius: 5px;
+            padding: 10px 25px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            outline: none;
+        }
+        /* 15 */
+        
+        .btn-15 {
+            background: #39374D;
+            border: none;
+            z-index: 1;
+        }
+        
+        .btn-15:after {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 100%;
+            top: 0;
+            right: 0;
+            z-index: -1;
+            background-color: #FFF;
+            border-radius: 5px;
+            border: 1px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-15:hover {
+            color: #000;
+        }
+        
+        .btn-15:hover:after {
+            left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <button class="custom-btn btn-15">Read More</button>
+
+
+    <section class="container">
+        <div class="filters filter-section">
+            <div class="sliders row">
+                <div class="col-sm-4">
+                    <div class="bootstrap-slider">
+                        <span class="filter-label">Weight Range: <span class="filter-selection"></span></span>
+                        <b class="filter-min">30</b>
+                        <input id="filter-weight" type="text" class="bootstrap-slider" value="" data-filter-group="weight">
+                        <b class="filter-max">100</b>
+                    </div>
+                </div>
+
+            </div>
+    </section>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.2.0/bootstrap-slider.js"></script>
+<script>
+    $(document).ready(function() {
+        var buttonFilters = {};
+        var buttonFilter = '*';
+
+        var rangeFilters = {
+
+            'weight': {
+                'min': 30,
+                'max': 100
+            }
+        };
+
+        var $grid = $('.grid').isotope({
+            itemSelector: '.item',
+            layout: 'masonry',
+
+            filter: function() {
+                var $this = $(this);
+
+                var weight = $this.attr('data-weight');
+
+                var isInWeightRange = (rangeFilters['weight'].min <= weight && rangeFilters['weight'].max >= weight);
+
+                return $this.is(buttonFilter) && (isInHeightRange && isInWeightRange);
+            }
+        });
+
+
+        var $weightSlider = $('#filter-weight').slider({
+            tooltip_split: true,
+            min: 30,
+            max: 100,
+            range: true,
+            value: [30, 100]
+        });
+
+    });
+</script>
+
+</html>
